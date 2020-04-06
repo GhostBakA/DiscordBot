@@ -18,6 +18,7 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 bot.on('message', message => {
+    console.log(message.content)
     if (message.author.bot == false) {
         if (message.content.slice(0, 2) == '!r') {
             reply = message.content.replace("!r", "")
