@@ -18,7 +18,6 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 bot.on('message', message => {
-    console.log(message.content)
     if (message.author.bot == false) {
         if (message.content.slice(0, 2) == '!r') {
             reply = message.content.replace("!r", "")
@@ -29,6 +28,10 @@ bot.on('message', message => {
             for(i=0; i<20; i++){
                 message.channel.send(reply)
             }
+        }
+        else if(message.content.slice(0,7) == 'bakchod'){
+            console.log(message.member.voice.channel)
+            message.member.voice.channel.join()
         }
     }
 });
