@@ -1,6 +1,7 @@
 var Discord = require('discord.js');
 var logger = require('winston');
-var auth = require('./auth.json');
+var dotenv = require('dotenv');
+dotenv.config();
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -8,10 +9,10 @@ logger.add(new logger.transports.Console, {
 });
 logger.level = 'debug';
 // Initialize Discord Bot
-var bot = new Discord.Client({
-    token: auth.token,
-    autorun: true
-});
+authToken = process.env.AUTH_TOKEN
+console.log(process.env)
+console.log(authToken)
+var bot = new Discord.Client();
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
@@ -36,4 +37,4 @@ bot.on('message', message => {
     }
 });
 
-bot.login(auth.token);
+bot.login(authToken);
