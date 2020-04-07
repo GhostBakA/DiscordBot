@@ -5,7 +5,7 @@ const app = express()
 const port = process.env.PORT || 3000;
 dotenv.config();
 
-require('./cronjobs/heroku-cron')
+require('./cronjobs/heroku-cron')()
 
 // Initialize Discord Bot
 authToken = process.env.AUTH_TOKEN
