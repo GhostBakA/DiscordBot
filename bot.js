@@ -1,7 +1,13 @@
 var Discord = require('discord.js');
 var logger = require('winston');
 var dotenv = require('dotenv');
+var express = require('express');
+app = express()
 dotenv.config();
+
+app.get('/', (req, res) => {
+    res.send("Bot Status : "+bot.presenceStatus)
+})
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -10,8 +16,6 @@ logger.add(new logger.transports.Console, {
 logger.level = 'debug';
 // Initialize Discord Bot
 authToken = process.env.AUTH_TOKEN
-console.log(process.env)
-console.log(authToken)
 var bot = new Discord.Client();
 bot.on('ready', function (evt) {
     logger.info('Connected');
@@ -38,3 +42,4 @@ bot.on('message', message => {
 });
 
 bot.login(authToken);
+
