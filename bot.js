@@ -1,26 +1,15 @@
 var Discord = require('discord.js');
-var logger = require('winston');
 var dotenv = require('dotenv');
 var express = require('express');
-app = express()
+const app = express()
+const port = process.env.PORT || 3000;
 dotenv.config();
 
-app.get('/', (req, res) => {
-    res.send("Bot Status : "+bot.presenceStatus)
-})
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(new logger.transports.Console, {
-    colorize: true
-});
-logger.level = 'debug';
 // Initialize Discord Bot
 authToken = process.env.AUTH_TOKEN
 var bot = new Discord.Client();
 bot.on('ready', function (evt) {
-    logger.info('Connected');
-    logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
+    console.log("Bot status : "+bot.presence.status)
 });
 bot.on('message', message => {
     if (message.author.bot == false) {
@@ -43,3 +32,9 @@ bot.on('message', message => {
 
 bot.login(authToken);
 
+
+app.get('/', (req, res) => {
+    res.send("Bot Status : "+bot.presence.status)
+})
+
+app.listen(port, () => console.log("App listening at 'localhost:" + port+"'"))
