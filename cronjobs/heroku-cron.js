@@ -11,11 +11,7 @@ module.exports = () => {
         }
 
         const req = https.request(options, res => {
-            console.log(`statusCode: ${res.statusCode}`)
-
-            res.on('data', d => {
-                console.log('Success')
-            })
+            console.log(`Cron Job StatusCode: ${res.statusCode}`)
         })
 
         req.on('error', error => {

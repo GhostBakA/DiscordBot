@@ -17,20 +17,7 @@ bot.on('ready', function (evt) {
 // Message commands
 bot.on('message', message => {
     if (message.author.bot == false) {
-        if (message.content.slice(0, 2) == '!r') {
-            reply = message.content.replace("!r", "")
-            message.channel.send(reply)
-        }
-        else if (message.content.slice(0, 2) == '!s') {
-            reply = message.content.replace("!s", "")
-            for (i = 0; i < 20; i++) {
-                message.channel.send(reply)
-            }
-        }
-        else if (message.content.slice(0, 7) == 'bakchod') {
-            console.log(message.member.voice.channel)
-            message.member.voice.channel.join()
-        }
+        require('./commands')(message)
     }
 });
 
